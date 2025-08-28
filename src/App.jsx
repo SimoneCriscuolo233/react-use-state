@@ -35,11 +35,12 @@ function App() {
       description: "ReactJS è una libreria JavaScript per costruire interfacce utente, in particolare applicazioni a pagina singola. Consente agli sviluppatori di creare componenti UI riutilizzabili e di gestire efficacemente lo stato dell'applicazione."
     }
   ];
-
+  const [activeId, setActiveId] = useState(1);
+  const activeLang = languages.find((lang) => lang.id === activeId)
   return (
     <>
       <Header />
-      <Main languages={languages}/>
+      <Main languages={languages} setActiveId={setActiveId} activeLang={activeLang} />
     </>
 
   );
