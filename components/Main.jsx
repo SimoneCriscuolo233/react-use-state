@@ -1,5 +1,5 @@
 
-const Main = ({ languages, setActiveId, activeLang }) => {
+const Main = ({ languages, setActiveId, activeLang, activeId }) => {
   const firstLang = languages[0]
   return (
     <main>
@@ -10,7 +10,7 @@ const Main = ({ languages, setActiveId, activeLang }) => {
               {languages.map((lang) => (
                 <button
                   key={lang.id}
-                  className="btn btn-primary"
+                  className={`btn ${activeId === lang.id ? "btn-warning" : "btn-primary"}`}
                   onClick={() => setActiveId(lang.id)}
                 >
                   {lang.title}
@@ -23,8 +23,14 @@ const Main = ({ languages, setActiveId, activeLang }) => {
           <div className="col-12" key={firstLang.id}>
             <div className="card">
               <div className="card-body">
-                <h5 className="card-title">{activeLang.title}</h5>
-                <p className="card-text">{activeLang.description}</p>
+                {activeLang ? (
+                  <>
+                    <h5 className="card-title">{activeLang.title}</h5>
+                    <p className="card-text">{activeLang.description}</p>
+                  </>
+                ) : (
+                  <p className="card-text text-muted">Nessun linguaggio selezionato</p>
+                )}
               </div>
             </div>
           </div>
